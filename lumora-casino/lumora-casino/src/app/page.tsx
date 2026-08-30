@@ -92,12 +92,12 @@ export default function LobbyPage() {
         <h2 className="mb-3 font-display text-lg font-semibold">Global stats</h2>
         <Panel>
           <StatGrid>
-            <StatTile label="Demo balance" value={`${balance.toFixed(2)} FUN`} />
+            <StatTile label="Demo balance" value={`$${balance.toFixed(2)}`} />
             <StatTile label="Total bets" value={String(stats.totalBets)} />
             <StatTile label="Total wagered" value={stats.wagered.toFixed(2)} />
             <StatTile
               label="Net profit"
-              value={`${stats.profit >= 0 ? "+" : ""}${stats.profit.toFixed(2)}`}
+              value={`${stats.profit >= 0 ? "+$" : "-$"}${Math.abs(stats.profit).toFixed(2)}`}
               tone={stats.profit >= 0 ? "win" : "loss"}
             />
             <StatTile label="Target RTP" value={formatPercent(DEFAULT_RTP)} />

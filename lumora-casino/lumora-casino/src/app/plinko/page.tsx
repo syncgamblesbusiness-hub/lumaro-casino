@@ -120,11 +120,11 @@ export default function PlinkoPage() {
       sessionProfit += profit;
       count += 1;
       if (stopOnProfit !== "" && sessionProfit >= Number(stopOnProfit)) {
-        push({ kind: "success", title: "Stop on profit reached", description: `+${sessionProfit.toFixed(2)} FUN` });
+        push({ kind: "success", title: "Stop on profit reached", description: `+$${sessionProfit.toFixed(2)}` });
         break;
       }
       if (stopOnLoss !== "" && sessionProfit <= -Number(stopOnLoss)) {
-        push({ kind: "error", title: "Stop on loss reached", description: `${sessionProfit.toFixed(2)} FUN` });
+        push({ kind: "error", title: "Stop on loss reached", description: `-$${Math.abs(sessionProfit).toFixed(2)}` });
         break;
       }
       await wait(turbo ? 70 : 220);
@@ -224,8 +224,8 @@ export default function PlinkoPage() {
 
             {autoOpen && (
               <div className="mt-3 space-y-2 rounded-xl border border-surface-line bg-surface-raised/50 p-3">
-                <NumberField label="Stop on profit (FUN)" value={stopOnProfit} onChange={setStopOnProfit} disabled={autoRunning} />
-                <NumberField label="Stop on loss (FUN)" value={stopOnLoss} onChange={setStopOnLoss} disabled={autoRunning} />
+                <NumberField label="Stop on profit ($)" value={stopOnProfit} onChange={setStopOnProfit} disabled={autoRunning} />
+                <NumberField label="Stop on loss ($)" value={stopOnLoss} onChange={setStopOnLoss} disabled={autoRunning} />
                 {!autoRunning ? (
                   <button
                     onClick={startAutoBet}
@@ -301,7 +301,7 @@ export default function PlinkoPage() {
               <StatTile label="Wagered" value={`${stats.wagered.toFixed(2)}`} />
               <StatTile
                 label="Net profit"
-                value={`${stats.profit >= 0 ? "+" : ""}${stats.profit.toFixed(2)}`}
+                value={`${stats.profit >= 0 ? "+$" : "-$"}${Math.abs(stats.profit).toFixed(2)}`}
                 tone={stats.profit >= 0 ? "win" : "loss"}
               />
               <StatTile label="Wins" value={String(stats.wins)} tone="win" />

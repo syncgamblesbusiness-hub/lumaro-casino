@@ -24,10 +24,10 @@ export function Topbar() {
           aria-label="Demo wallet balance"
         >
           <span className="h-2 w-2 rounded-full bg-win" aria-hidden />
+          <span className="text-xs font-medium text-text-muted">{currency}</span>
           <span className="mono-tabular text-sm font-semibold text-text-primary">
             {formatCredits(balance)}
           </span>
-          <span className="text-xs font-medium text-text-muted">{currency}</span>
         </div>
 
         {confirming ? (
@@ -36,7 +36,7 @@ export function Topbar() {
               onClick={() => {
                 resetBalance();
                 setConfirming(false);
-                push({ kind: "success", title: "Balance restored", description: "1,000.00 FUN credited to your demo wallet." });
+                push({ kind: "success", title: "Balance restored", description: "$1,000.00 credited to your demo wallet." });
               }}
               className="rounded-full bg-violet px-3 py-2 text-xs font-semibold text-white transition hover:bg-violet-soft"
             >

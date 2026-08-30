@@ -126,7 +126,7 @@ export default function AscentPage() {
     const updated = { ...bet, cashedOutAt: currentMultiplier };
     activeBetRef.current = updated;
     setActiveBet(updated);
-    push({ kind: "success", title: "Cashed out", description: `${formatMultiplier(currentMultiplier)} · +${profit.toFixed(2)} FUN` });
+    push({ kind: "success", title: "Cashed out", description: `${formatMultiplier(currentMultiplier)} · +$${profit.toFixed(2)}` });
   }
 
   function placeBet() {
@@ -279,8 +279,8 @@ export default function AscentPage() {
 
             {autoBet && (
               <div className="mt-3 space-y-2 rounded-xl border border-surface-line bg-surface-raised/50 p-3">
-                <NumberField label="Stop on profit (FUN)" value={stopOnProfit} onChange={setStopOnProfit} />
-                <NumberField label="Stop on loss (FUN)" value={stopOnLoss} onChange={setStopOnLoss} />
+                <NumberField label="Stop on profit ($)" value={stopOnProfit} onChange={setStopOnProfit} />
+                <NumberField label="Stop on loss ($)" value={stopOnLoss} onChange={setStopOnLoss} />
               </div>
             )}
 
@@ -353,7 +353,7 @@ export default function AscentPage() {
               <StatTile label="Wagered" value={`${stats.wagered.toFixed(2)}`} />
               <StatTile
                 label="Net profit"
-                value={`${stats.profit >= 0 ? "+" : ""}${stats.profit.toFixed(2)}`}
+                value={`${stats.profit >= 0 ? "+$" : "-$"}${Math.abs(stats.profit).toFixed(2)}`}
                 tone={stats.profit >= 0 ? "win" : "loss"}
               />
               <StatTile label="Wins" value={String(stats.wins)} tone="win" />
