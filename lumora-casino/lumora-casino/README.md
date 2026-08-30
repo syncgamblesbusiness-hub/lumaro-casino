@@ -1,7 +1,7 @@
 # Lumora — Demo Casino (play-money only)
 
 A self-contained, professional-looking casino web app built with **Next.js (App Router)**,
-**TypeScript** and **Tailwind CSS**. Every credit is free demo currency ("FUN"). There is
+**TypeScript** and **Tailwind CSS**. Every credit is free demo currency ("$"). There is
 **no real money anywhere in this project** — no payment integration, no deposits, no
 withdrawals, and no code path that could accept one.
 
