@@ -92,7 +92,7 @@ export default function LobbyPage() {
         <h2 className="mb-3 font-display text-lg font-semibold">Global stats</h2>
         <Panel>
           <StatGrid>
-            <StatTile label="Demo balance" value={`${balance.toFixed(2)} FUN`} />
+            <StatTile label="Demo balance" value={`$${balance.toFixed(2)}`} />
             <StatTile label="Total bets" value={String(stats.totalBets)} />
             <StatTile label="Total wagered" value={stats.wagered.toFixed(2)} />
             <StatTile

@@ -82,7 +82,7 @@ interface CasinoState {
 export const useCasinoStore = create<CasinoState>((set, get) => ({
   ready: false,
   balance: STARTING_BALANCE,
-  currency: "FUN",
+  currency: "$",
 
   clientSeed: "",
   serverSeed: "",

@@ -126,11 +126,11 @@ export default function DicePage() {
       sessionProfit += profit;
       count += 1;
       if (stopOnProfit !== "" && sessionProfit >= Number(stopOnProfit)) {
-        push({ kind: "success", title: "Stop on profit reached", description: `+${sessionProfit.toFixed(2)} FUN` });
+        push({ kind: "success", title: "Stop on profit reached", description: `+$${sessionProfit.toFixed(2)}` });
         break;
       }
       if (stopOnLoss !== "" && sessionProfit <= -Number(stopOnLoss)) {
-        push({ kind: "error", title: "Stop on loss reached", description: `${sessionProfit.toFixed(2)} FUN` });
+        push({ kind: "error", title: "Stop on loss reached", description: `-$${Math.abs(sessionProfit).toFixed(2)}` });
         break;
       }
       await wait(turbo ? 60 : 250);
@@ -230,14 +230,14 @@ export default function DicePage() {
                   disabled={autoRunning}
                 />
                 <NumberField
-                  label="Stop on profit (FUN)"
+                  label="Stop on profit ($)"
                   value={stopOnProfit}
                   onChange={setStopOnProfit}
                   disabled={autoRunning}
                   optional
                 />
                 <NumberField
-                  label="Stop on loss (FUN)"
+                  label="Stop on loss ($)"
                   value={stopOnLoss}
                   onChange={setStopOnLoss}
                   disabled={autoRunning}
@@ -275,7 +275,7 @@ export default function DicePage() {
           <Panel title="Round info">
             <StatRow label="Win chance" value={formatPercent(chance / 100)} />
             <StatRow label="Multiplier" value={formatMultiplier(multiplier)} />
-            <StatRow label="Potential win" value={`${potentialWin.toFixed(2)} FUN`} />
+            <StatRow label="Potential win" value={`$${potentialWin.toFixed(2)}`} />
             <StatRow label="RTP" value={formatPercent(DEFAULT_RTP)} />
             <StatRow label="House edge" value={formatPercent(houseEdge)} />
           </Panel>
