@@ -247,7 +247,13 @@ export default function AscentPage() {
             <BetAmountInput value={betAmount} onChange={setBetAmount} disabled={!!activeBet} />
 
             <div className="mt-4">
-              <Toggle checked={autoCashoutOn} onChange={setAutoCashoutOn} label="Auto cash-out" />
+              <Toggle
+                checked={autoCashoutOn}
+                onChange={setAutoCashoutOn}
+                label="Auto cash-out"
+                description="Cash out automatically at your target multiplier."
+                icon="cashout"
+              />
               {autoCashoutOn && (
                 <input
                   type="number"
@@ -262,7 +268,13 @@ export default function AscentPage() {
             </div>
 
             <div className="mt-3">
-              <Toggle checked={autoBet} onChange={setAutoBet} label="Auto-bet every round" />
+              <Toggle
+                checked={autoBet}
+                onChange={setAutoBet}
+                label="Auto-bet every round"
+                description="Queue the same wager when each new round opens."
+                icon="auto"
+              />
             </div>
 
             {autoBet && (

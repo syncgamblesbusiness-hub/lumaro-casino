@@ -214,11 +214,25 @@ export default function DicePage() {
             </div>
 
             <div className="mt-4">
-              <Toggle checked={turbo} onChange={setTurbo} label="Turbo mode" disabled={autoRunning && false} />
+              <Toggle
+                checked={turbo}
+                onChange={setTurbo}
+                label="Turbo mode"
+                description="Shortens the roll animation for faster play."
+                icon="turbo"
+                disabled={autoRunning}
+              />
             </div>
 
             <div className="mt-3">
-              <Toggle checked={autoOpen} onChange={setAutoOpen} label="Auto-bet" disabled={rolling} />
+              <Toggle
+                checked={autoOpen}
+                onChange={setAutoOpen}
+                label="Auto-bet"
+                description="Repeat this wager with optional stop limits."
+                icon="auto"
+                disabled={rolling || autoRunning}
+              />
             </div>
 
             {autoOpen && (
@@ -246,15 +260,17 @@ export default function DicePage() {
                 {!autoRunning ? (
                   <button
                     onClick={startAutoBet}
-                    className="w-full rounded-xl bg-violet py-2.5 text-sm font-semibold text-white transition hover:bg-violet-soft"
+                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-violet py-2.5 text-sm font-bold text-white transition-[background-color,transform] hover:-translate-y-0.5 hover:bg-violet-soft active:translate-y-0"
                   >
+                    <span className="size-1.5 rounded-full bg-white shadow-[0_0_0_4px_rgba(255,255,255,0.12)]" />
                     Start auto-bet
                   </button>
                 ) : (
                   <button
                     onClick={stopAutoBet}
-                    className="w-full rounded-xl bg-loss py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
+                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-loss py-2.5 text-sm font-bold text-white transition-[filter,transform] hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0"
                   >
+                    <span className="size-2 rounded-[2px] bg-white" />
                     Stop auto-bet
                   </button>
                 )}
