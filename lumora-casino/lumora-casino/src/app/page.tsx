@@ -39,15 +39,14 @@ export default function LobbyPage() {
         <div className="aurora-field" />
         <div className="relative z-10 max-w-2xl">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-surface-line bg-surface-raised px-3 py-1 text-[11px] font-medium text-text-muted">
-            <span className="h-1.5 w-1.5 rounded-full bg-win" /> Demo mode · play money only
+            <span className="h-1.5 w-1.5 rounded-full bg-win" /> 
           </span>
           <h1 className="mt-4 font-display text-4xl font-bold leading-tight md:text-5xl">
             Provably fair games,<span className="text-gradient-aurora"> zero real money.</span>
           </h1>
           <p className="mt-4 max-w-xl text-sm text-text-muted md:text-base">
             Lumora is a self-contained casino sandbox. Every spin, drop and round runs on
-            transparent SHA-256 math you can verify yourself — and every credit is free demo
-            currency that can never be deposited or withdrawn.
+            transparent SHA-256 math you can verify yourself.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
