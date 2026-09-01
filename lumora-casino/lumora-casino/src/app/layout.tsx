@@ -5,9 +5,9 @@ import { ToastContainer } from "@/components/ui/ToastContainer";
 import { FairnessBootstrap } from "@/components/fairness/FairnessBootstrap";
 
 export const metadata: Metadata = {
-  title: "Lumora — Demo Casino",
+  title: "Lumora",
   description:
-    "Lumora is a play-money demo casino: Plinko, Dice and Ascent with a transparent provably-fair engine. No real money, ever.",
+    "Lumora is a casino with: Plinko, Dice and Ascent with a transparent provably-fair engine.",
 };
 
 // Fonts are loaded via a plain <link> tag (see below) instead of next/font,
