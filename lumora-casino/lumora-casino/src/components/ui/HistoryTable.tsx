@@ -32,14 +32,14 @@ export function HistoryTable({ rows, emptyLabel = "No bets yet." }: { rows: BetR
                 <td className="mono-tabular py-2 pr-2 text-text-muted">
                   {new Date(r.time).toLocaleTimeString()}
                 </td>
-                <td className="mono-tabular py-2 pr-2">{r.betAmount.toFixed(2)}</td>
+                <td className="mono-tabular py-2 pr-2">${r.betAmount.toFixed(2)}</td>
                 <td className={`mono-tabular py-2 pr-2 ${r.win ? "text-win" : "text-loss"}`}>
                   {formatMultiplier(r.multiplier)}
                 </td>
-                <td className="mono-tabular py-2 pr-2">{r.payout.toFixed(2)}</td>
+                <td className="mono-tabular py-2 pr-2">${r.payout.toFixed(2)}</td>
                 <td className={`mono-tabular py-2 pr-2 ${r.profit >= 0 ? "text-win" : "text-loss"}`}>
-                  {r.profit >= 0 ? "+" : ""}
-                  {r.profit.toFixed(2)}
+                  {r.profit >= 0 ? "+$" : "-$"}
+                  {Math.abs(r.profit).toFixed(2)}
                 </td>
                 <td className="py-2 text-right">
                   <button

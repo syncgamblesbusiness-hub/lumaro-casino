@@ -126,11 +126,11 @@ export default function DicePage() {
       sessionProfit += profit;
       count += 1;
       if (stopOnProfit !== "" && sessionProfit >= Number(stopOnProfit)) {
-        push({ kind: "success", title: "Stop on profit reached", description: `+${sessionProfit.toFixed(2)} FUN` });
+        push({ kind: "success", title: "Stop on profit reached", description: `+$${sessionProfit.toFixed(2)}` });
         break;
       }
       if (stopOnLoss !== "" && sessionProfit <= -Number(stopOnLoss)) {
-        push({ kind: "error", title: "Stop on loss reached", description: `${sessionProfit.toFixed(2)} FUN` });
+        push({ kind: "error", title: "Stop on loss reached", description: `-$${Math.abs(sessionProfit).toFixed(2)}` });
         break;
       }
       await wait(turbo ? 60 : 250);
@@ -214,11 +214,25 @@ export default function DicePage() {
             </div>
 
             <div className="mt-4">
-              <Toggle checked={turbo} onChange={setTurbo} label="Turbo mode" disabled={autoRunning && false} />
+              <Toggle
+                checked={turbo}
+                onChange={setTurbo}
+                label="Turbo mode"
+                description="Shortens the roll animation for faster play."
+                icon="turbo"
+                disabled={autoRunning}
+              />
             </div>
 
             <div className="mt-3">
-              <Toggle checked={autoOpen} onChange={setAutoOpen} label="Auto-bet" disabled={rolling} />
+              <Toggle
+                checked={autoOpen}
+                onChange={setAutoOpen}
+                label="Auto-bet"
+                description="Repeat this wager with optional stop limits."
+                icon="auto"
+                disabled={rolling || autoRunning}
+              />
             </div>
 
             {autoOpen && (
@@ -230,14 +244,14 @@ export default function DicePage() {
                   disabled={autoRunning}
                 />
                 <NumberField
-                  label="Stop on profit (FUN)"
+                  label="Stop on profit ($)"
                   value={stopOnProfit}
                   onChange={setStopOnProfit}
                   disabled={autoRunning}
                   optional
                 />
                 <NumberField
-                  label="Stop on loss (FUN)"
+                  label="Stop on loss ($)"
                   value={stopOnLoss}
                   onChange={setStopOnLoss}
                   disabled={autoRunning}
@@ -246,15 +260,17 @@ export default function DicePage() {
                 {!autoRunning ? (
                   <button
                     onClick={startAutoBet}
-                    className="w-full rounded-xl bg-violet py-2.5 text-sm font-semibold text-white transition hover:bg-violet-soft"
+                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-violet py-2.5 text-sm font-bold text-white transition-[background-color,transform] hover:-translate-y-0.5 hover:bg-violet-soft active:translate-y-0"
                   >
+                    <span className="size-1.5 rounded-full bg-white shadow-[0_0_0_4px_rgba(255,255,255,0.12)]" />
                     Start auto-bet
                   </button>
                 ) : (
                   <button
                     onClick={stopAutoBet}
-                    className="w-full rounded-xl bg-loss py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
+                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-loss py-2.5 text-sm font-bold text-white transition-[filter,transform] hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0"
                   >
+                    <span className="size-2 rounded-[2px] bg-white" />
                     Stop auto-bet
                   </button>
                 )}
@@ -275,7 +291,7 @@ export default function DicePage() {
           <Panel title="Round info">
             <StatRow label="Win chance" value={formatPercent(chance / 100)} />
             <StatRow label="Multiplier" value={formatMultiplier(multiplier)} />
-            <StatRow label="Potential win" value={`${potentialWin.toFixed(2)} FUN`} />
+            <StatRow label="Potential win" value={`$${potentialWin.toFixed(2)}`} />
             <StatRow label="RTP" value={formatPercent(DEFAULT_RTP)} />
             <StatRow label="House edge" value={formatPercent(houseEdge)} />
           </Panel>
@@ -311,7 +327,7 @@ export default function DicePage() {
               <StatTile label="Wagered" value={`${stats.wagered.toFixed(2)}`} />
               <StatTile
                 label="Net profit"
-                value={`${stats.profit >= 0 ? "+" : ""}${stats.profit.toFixed(2)}`}
+                value={`${stats.profit >= 0 ? "+$" : "-$"}${Math.abs(stats.profit).toFixed(2)}`}
                 tone={stats.profit >= 0 ? "win" : "loss"}
               />
               <StatTile label="Wins" value={String(stats.wins)} tone="win" />

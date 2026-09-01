@@ -26,11 +26,11 @@ export function BetAmountInput({
         <label htmlFor={id} className="text-xs font-medium text-text-muted">
           Bet amount
         </label>
-        <span className="text-[11px] text-text-faint">Balance {balance.toFixed(2)} FUN</span>
+        <span className="text-[11px] text-text-faint">Balance ${balance.toFixed(2)}</span>
       </div>
       <div className="mt-1.5 flex items-stretch gap-1.5">
         <div className="flex flex-1 items-center rounded-xl border border-surface-line bg-surface-raised px-3">
-          <span className="mr-1 text-text-faint">🜲</span>
+          <span className="mr-1 text-text-faint">$</span>
           <input
             id={id}
             type="number"
@@ -79,7 +79,7 @@ export function BetAmountInput({
             onClick={() => set(q)}
             className="rounded-full border border-surface-line px-2.5 py-1 text-[11px] text-text-muted transition hover:border-violet/50 hover:text-text-primary disabled:opacity-40"
           >
-            {q} FUN
+            ${q}
           </button>
         ))}
       </div>
